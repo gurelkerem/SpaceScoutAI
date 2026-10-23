@@ -1,30 +1,32 @@
 from scraper import get_news
 from analyzer import *
 
-print("\n🚀 SPACESCOUT RAPORU\n")
+print("\n🚀 SON 24 SAATTEKİ UZAY GELİŞMELERİ\n")
 
 articles = get_news()
 
+print(
+    f"Bulunan güncel haber sayısı: {len(articles)}\n"
+)
+
 for article in articles:
 
-    title = article.title
+    title = article["title"]
+    hours = article["hours"]
 
     category = get_category(title)
-
     score = get_score(title)
-
     usages = get_usage(title)
 
-    print("=" * 50)
+    print("=" * 60)
 
     print("Başlık:")
     print(title)
 
-    print("\nKategori:")
-    print(category)
+    print(f"\n⏰ {hours} saat önce")
 
-    print("\nÖnem:")
-    print(f"{score}/10")
+    print(f"\nKategori: {category}")
+    print(f"Önem: {score}/10")
 
     print("\nKullanım Alanları:")
 
