@@ -1,17 +1,24 @@
 name: SpaceScout AI
 
 on:
-
   workflow_dispatch:
 
   schedule:
     - cron: '0 5 * * *'
 
-jobs:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
+jobs:
   scout:
 
     runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
 
@@ -27,8 +34,14 @@ jobs:
       - name: Run SpaceScout
         run: python main.py
 
-      - name: Upload Website
-        uses: actions/upload-artifact@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: website
-          path: index.html
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
