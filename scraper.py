@@ -1,25 +1,15 @@
-import requests
-from bs4 import BeautifulSoup
+import feedparser
 
 def get_news():
 
-    url = "https://www.nasa.gov/news/"
-
-    response = requests.get(
-        url,
-        timeout=20
+    feed = feedparser.parse(
+        "https://www.space.com/feeds/all"
     )
 
-    print("Durum kodu:", response.status_code)
+    print("\n🚀 Son Uzay Haberleri\n")
 
-    soup = BeautifulSoup(
-        response.text,
-        "html.parser"
-    )
+    print("Bulunan haber sayısı:",
+          len(feed.entries))
 
-    titles = soup.find_all("h2")
-
-    print("Bulunan başlıklar:")
-
-    for title in titles[:10]:
-        print(title.get_text(strip=True))
+    for article in feed.entries[:10]:
+        print("- " + article.title)
