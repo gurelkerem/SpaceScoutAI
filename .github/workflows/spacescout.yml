@@ -1,0 +1,14 @@
+name: SpaceScout AI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run SpaceScout
+        run: echo "SpaceScout çalıştı!"
