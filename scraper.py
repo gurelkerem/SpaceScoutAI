@@ -14,6 +14,7 @@ def get_news():
     for entry in feed.entries:
 
         try:
+
             published = datetime(
                 *entry.published_parsed[:6],
                 tzinfo=timezone.utc
@@ -21,7 +22,6 @@ def get_news():
 
             age = now - published
 
-            # Son 24 saat
             if age.total_seconds() <= 86400:
 
                 articles.append({
@@ -31,7 +31,7 @@ def get_news():
                     )
                 })
 
-        except:
+        except Exception:
             continue
 
     return articles

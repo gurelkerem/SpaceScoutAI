@@ -1,13 +1,16 @@
 from scraper import get_news
 from analyzer import *
+from report import create_report
 
-print("\n🚀 SON 24 SAATTEKİ UZAY GELİŞMELERİ\n")
+print("\n🚀 SPACESCOUT RAPORU\n")
 
 articles = get_news()
 
 print(
-    f"Bulunan güncel haber sayısı: {len(articles)}\n"
+    f"Son 24 saatte bulunan haber sayısı: {len(articles)}\n"
 )
+
+report_data = []
 
 for article in articles:
 
@@ -20,17 +23,17 @@ for article in articles:
 
     print("=" * 60)
 
-    print("Başlık:")
     print(title)
-
-    print(f"\n⏰ {hours} saat önce")
-
-    print(f"\nKategori: {category}")
+    print(f"⏰ {hours} saat önce")
+    print(f"Kategori: {category}")
     print(f"Önem: {score}/10")
 
-    print("\nKullanım Alanları:")
+    report_data.append({
+        "title": title,
+        "hours": hours,
+        "category": category,
+        "score": score,
+        "usages": usages
+    })
 
-    for usage in usages:
-        print("-", usage)
-
-    print()
+create_report(report_data)
