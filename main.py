@@ -2,12 +2,14 @@ from scraper import get_news
 from analyzer import *
 from report import create_report
 
-print("\n🚀 SPACESCOUT RAPORU\n")
+print(
+    "\n🚀 SpaceScout Başladı\n"
+)
 
 articles = get_news()
 
 print(
-    f"Son 24 saatte bulunan haber sayısı: {len(articles)}\n"
+    f"Bulunan haber sayısı: {len(articles)}"
 )
 
 report_data = []
@@ -24,9 +26,18 @@ for article in articles:
     print("=" * 60)
 
     print(title)
-    print(f"⏰ {hours} saat önce")
-    print(f"Kategori: {category}")
-    print(f"Önem: {score}/10")
+
+    print(
+        f"⏰ {hours} saat önce"
+    )
+
+    print(
+        f"Kategori: {category}"
+    )
+
+    print(
+        f"Önem: {score}/10"
+    )
 
     report_data.append({
         "title": title,
@@ -36,4 +47,6 @@ for article in articles:
         "usages": usages
     })
 
-create_report(report_data)
+create_report(
+    report_data
+)

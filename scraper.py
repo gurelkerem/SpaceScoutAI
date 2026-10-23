@@ -1,15 +1,18 @@
 import feedparser
 from datetime import datetime, timezone
 
+
 def get_news():
 
     feed = feedparser.parse(
         "https://www.space.com/feeds/all"
     )
 
-    articles = []
+    now = datetime.now(
+        timezone.utc
+    )
 
-    now = datetime.now(timezone.utc)
+    articles = []
 
     for entry in feed.entries:
 
@@ -21,6 +24,8 @@ def get_news():
             )
 
             age = now - published
+
+            # Son 24 saat
 
             if age.total_seconds() <= 86400:
 

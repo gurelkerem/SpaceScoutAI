@@ -1,9 +1,14 @@
 name: SpaceScout AI
 
 on:
+
   workflow_dispatch:
 
+  schedule:
+    - cron: '0 5 * * *'
+
 jobs:
+
   scout:
 
     runs-on: ubuntu-latest
@@ -22,8 +27,8 @@ jobs:
       - name: Run SpaceScout
         run: python main.py
 
-      - name: Upload Report
+      - name: Upload Website
         uses: actions/upload-artifact@v4
         with:
-          name: spacescout-report
-          path: daily_report.md
+          name: website
+          path: index.html

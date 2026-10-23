@@ -1,48 +1,87 @@
-from datetime import datetime
-
 def create_report(articles):
 
-    date = datetime.now().strftime(
-        "%Y-%m-%d"
-    )
+    html = """
+    <html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>SpaceScout AI</title>
+
+        <style>
+
+        body{
+            font-family: Arial;
+            background:#0b1020;
+            color:white;
+            max-width:1000px;
+            margin:auto;
+            padding:20px;
+        }
+
+        h1{
+            color:#4fc3f7;
+        }
+
+        .card{
+            background:#182038;
+            padding:20px;
+            border-radius:10px;
+            margin-bottom:20px;
+        }
+
+        </style>
+
+    </head>
+
+    <body>
+
+    <h1>🚀 SpaceScout AI</h1>
+
+    <p>Son 24 saatteki uzay gelişmeleri</p>
+    """
+
+    for article in articles:
+
+        html += f"""
+        <div class="card">
+
+        <h2>{article['title']}</h2>
+
+        <p>
+        ⏰ {article['hours']} saat önce
+        </p>
+
+        <p>
+        {article['category']}
+        </p>
+
+        <p>
+        ⭐ {article['score']}/10
+        </p>
+
+        <ul>
+        """
+
+        for usage in article["usages"]:
+            html += f"<li>{usage}</li>"
+
+        html += """
+        </ul>
+
+        </div>
+        """
+
+    html += """
+    </body>
+    </html>
+    """
 
     with open(
-        "daily_report.md",
+        "index.html",
         "w",
         encoding="utf-8"
     ) as f:
 
-        f.write("# 🚀 SpaceScout Günlük Raporu\n\n")
+        f.write(html)
 
-        f.write(f"**Tarih:** {date}\n\n")
-
-        f.write(
-            f"**Son 24 saatte bulunan haber sayısı:** {len(articles)}\n\n"
-        )
-
-        for article in articles:
-
-            f.write(
-                f"## {article['title']}\n\n"
-            )
-
-            f.write(
-                f"⏰ {article['hours']} saat önce\n\n"
-            )
-
-            f.write(
-                f"**Kategori:** {article['category']}\n\n"
-            )
-
-            f.write(
-                f"**Önem:** {article['score']}/10\n\n"
-            )
-
-            f.write("### Kullanım Alanları\n\n")
-
-            for usage in article["usages"]:
-                f.write(f"- {usage}\n")
-
-            f.write("\n---\n\n")
-
-    print("📄 daily_report.md oluşturuldu")
+    print("✅ index.html oluşturuldu")

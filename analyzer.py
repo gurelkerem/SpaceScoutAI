@@ -29,12 +29,12 @@ def get_score(title):
 
     keywords = [
         "launch",
-        "moon",
+        "rocket",
+        "satellite",
         "mars",
+        "moon",
         "black hole",
         "discovery",
-        "satellite",
-        "rocket",
         "telescope"
     ]
 
@@ -65,21 +65,21 @@ def get_usage(title):
     if "moon" in title:
         return [
             "Ay üsleri",
-            "Madencilik",
+            "Ay madenciliği",
             "Bilimsel araştırma"
         ]
 
     if "mars" in title:
         return [
             "İnsanlı görevler",
-            "Koloni araştırmaları"
+            "Koloni çalışmaları"
         ]
 
     if "black hole" in title:
         return [
-            "Temel fizik araştırmaları"
+            "Uzay fiziği araştırmaları"
         ]
 
     return [
-        "Bilimsel araştırma"
+        "Bilimsel araştırmalar"
     ]
