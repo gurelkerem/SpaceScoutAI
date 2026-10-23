@@ -1,5 +1,5 @@
 from scraper import get_news
 
-print("🚀 SpaceScout AI başlatıldı")
+print("🚀 SpaceScout AI Başladı")
 
 get_news()
